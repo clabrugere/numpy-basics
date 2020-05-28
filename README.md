@@ -7,7 +7,7 @@ This is a small project to recall machine learning basics. It consists in implem
 A few classical algorithms are implemented:
 * Linear regression (L2 regularization)
 * Logistic regression (L2 regularization)
-* K-NN regressor (Euclidean distance)
+* K-NN regressor and classifier (Euclidean distance)
 * Decision tree classifier (entropy for splits)
 * Random forest classifier (entropy for splits)
 
