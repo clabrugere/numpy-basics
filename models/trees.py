@@ -18,7 +18,7 @@ class Leaf:
         
 class DecisionTreeClassifier:
     
-    def __init__(self, max_depth=None, n_features=None):
+    def __init__(self, max_depth=None, n_features=None, quantization_mult=.05):
         
         if max_depth:
             self.max_depth = max_depth
@@ -29,6 +29,7 @@ class DecisionTreeClassifier:
         self.depth = 0
         self.n_classes = None
         self.root = None
+        self.quantization_mult = quantization_mult
     
     def fit(self, X, y):
         self.n_classes = np.max(y) + 1
@@ -84,10 +85,15 @@ class DecisionTreeClassifier:
         
         for i in feature_inds:
             feature_values = X[:, i]
+            
+            # discretize the support to avoid having too many thresholds to test
+            if np.issubsctype(feature_values, np.float):
+                feature_values = self.quantization_mult * np.round(feature_values / self.quantization_mult)
+            
             support = np.unique(feature_values)
             
             # define all thresholds to test
-            if len(support) > 1:
+            if len(support) > 1:                
                 thresholds = (support[1:] + support[:-1]) / 2
             else:
                 thresholds = support
