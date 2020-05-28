@@ -3,21 +3,28 @@ import numpy as np
 
 class KNNBase:
     
-    def __init__(self, n_neighbors, weights):
+    def __init__(self, n_neighbors, weights, scale):
         self.n_neighbors = n_neighbors
         self.weights = weights
+        self.scale = scale
     
     def _scale(self, X):     
         return (X - self._min) / (self._max - self._min)
     
     def fit(self, X, y):
-        self._min = X.min(axis=0)
-        self._max = X.max(axis=0)
-        self.X_train = self._scale(X)
+        if self.scale:
+            self._min = X.min(axis=0)
+            self._max = X.max(axis=0)
+            self.X_train = self._scale(X)
+        else:
+            self.X_train = X
+        
         self.y_train = y
     
     def predict(self, X):
-        X = self._scale(X)
+        if self.scale:
+            X = self._scale(X)
+        
         distances_squared = -2 * self.X_train @ X.T + np.sum(X**2, axis=1) + np.sum(self.X_train**2, axis=1)[:, None]
         inds = np.argsort(distances_squared, axis=0)
         distances_squared = np.sort(distances_squared, axis=0)
@@ -28,8 +35,8 @@ class KNNBase:
 
 class KNNRegressor(KNNBase):
     
-    def __init__(self, n_neighbors=5, weights='uniform'):
-        super().__init__(n_neighbors=n_neighbors, weights=weights)
+    def __init__(self, n_neighbors=5, weights='uniform', scale=True):
+        super().__init__(n_neighbors=n_neighbors, weights=weights, scale=scale)
     
     def predict(self, X):
         distances_squared, targets = super().predict(X)
@@ -43,8 +50,8 @@ class KNNRegressor(KNNBase):
         
 class KNNClassifier(KNNBase):
     
-    def __init__(self, n_neighbors=5, weights='uniform'):
-        super().__init__(n_neighbors=n_neighbors, weights=weights)
+    def __init__(self, n_neighbors=5, weights='uniform', scale=True):
+        super().__init__(n_neighbors=n_neighbors, weights=weights, scale=scale)
     
     def predict(self, X):
         distances_squared, targets = super().predict(X)
