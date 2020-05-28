@@ -10,9 +10,6 @@ class KNNRegressor:
     def _scale(self, X):     
         return (X - self._min) / (self._max - self._min)
     
-    def _squared_distances(self, X):
-        return np.sum((X[:, : None] - X[:, :, None].T)**2, axis=-1)
-    
     def fit(self, X, y):
         self._min = X.min(axis=0)
         self._max = X.max(axis=0)
