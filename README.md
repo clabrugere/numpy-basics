@@ -11,6 +11,7 @@ A few classical algorithms are implemented:
 * K-NN regressor and classifier (Euclidean distance)
 * Decision tree classifier (entropy for splits)
 * Random forest classifier (entropy for splits)
+* K-Means clustering algorithm
 
 ## Getting Started
 
