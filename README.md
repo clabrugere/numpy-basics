@@ -12,6 +12,7 @@ A few classical algorithms are implemented:
 * Decision tree classifier (entropy for splits)
 * Random forest classifier (entropy for splits)
 * K-Means clustering algorithm
+* Gaussian Mixture model
 * PCA dimension reduction
 
 ## Getting Started
