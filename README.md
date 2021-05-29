@@ -6,7 +6,7 @@ This is a small project to recall machine learning basics. It consists in implem
 ## Project structure
 A few classical algorithms are implemented:
 * Linear regression (L2 regularization)
-* Meta model 
+* Non-parametric meta model to estimate prediction intervals using bootstrapping
 * Kernel regression
 * Logistic regression (L2 regularization)
 * K-NN regressor and classifier (Euclidean distance)
