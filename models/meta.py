@@ -44,8 +44,8 @@ class PredictionIntervals:
         resid_val = np.percentile(resid_val, q=np.arange(100))
         resid_train = np.percentile(resid_train, q=np.arange(100))
 
-        # compute weighted residuals to account for overfitting as there is
-        # samples overlap in the bootstrapping procedure
+        # compute weighted residuals to account for overfitting as we use
+        # training residuals set to estimate predictions intervals
         if n_sample > self.max_sample_nier:
             combs_idx = np.random.choice(range(n_sample), self.max_sample_nier)
             combs = cartesian((self.y_train[combs_idx], y_hat_train[combs_idx]))
