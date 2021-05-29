@@ -7,7 +7,7 @@ class PredictionIntervals:
     def __init__(self, model, n_iter=100, max_samples_nier=1000):
         self.model = model
         self.n_iter = n_iter
-        self.max_sample_nier = 1000
+        self.max_sample_nier = max_samples_nier
         self.X_train = None
         self.y_train = None
 
