@@ -1,7 +1,7 @@
 # Numpy basics
 
 ## Context
-This project contains basic implementation of a few fundamental machine learning algorithms in numpy. The goal of the project is to practice numpy and python as well as to understand these classical algorithms both theorically and practically through the implementation.
+This project contains basic implementation of a few fundamental machine learning algorithms in numpy. The goal of the project is to practice numpy and python as well as to understand these classical algorithms both theoretically and practically through the implementation.
 While some care was taken into the implementation, these are not optimized.
 
 ## Project structure
